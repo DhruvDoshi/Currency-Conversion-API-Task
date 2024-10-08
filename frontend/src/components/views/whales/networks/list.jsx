@@ -80,7 +80,7 @@ function Networks() {
 
     return (
         <div className="px-4 py-8 flex flex-col h-full">
-            <h1 className="text-4xl text-white">Networks</h1>
+            <h1 className="text-4xl text-white">Whales Monitoring | Networks</h1>
             {network ?
                 loading ? <p className="p-16 text-2xl text-white">Loading...</p> :
                     <NetworkForm initialValue={network} onChange={submit}/>

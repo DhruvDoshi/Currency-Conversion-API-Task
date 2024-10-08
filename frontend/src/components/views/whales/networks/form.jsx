@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {Fragment, useState} from "react";
 import _ from 'lodash';
 
 import Button from "../../../common/buttons/clipButton.jsx";
@@ -19,7 +19,7 @@ function NetworkForm({initialValue, onChange}) {
     const [network, setNetwork] = useState(initialValue);
 
     const handleChange = (event) => {
-        setNetwork((current)=>{
+        setNetwork((current) => {
             return _.set(_.cloneDeep(current), event.target.name, event.target.value);
         });
     };
@@ -32,6 +32,11 @@ function NetworkForm({initialValue, onChange}) {
             <div className="flex items-center justify-end">
                 <h2 className="text-2xl">{network._id ? "Updating" : "Creating"}</h2>
             </div>
+            {network._id && (
+                <span className="bg-gray-800 text-white p-2 rounded-lg mt-4 ml-auto">
+                    {`Chain ID: ${network.networkId}`}
+                </span>
+            )}
             {!network._id && <input
                 type="number"
                 name="networkId"
@@ -83,6 +88,16 @@ function NetworkForm({initialValue, onChange}) {
                 name="whales.amount"
                 placeholder="Amount of whales to track | default: 10"
                 value={network.whales?.amount || ""}
+                onChange={handleChange}
+                className="bg-gray-800 text-white p-2 rounded-lg w-full mt-4"
+            />
+            <input
+                type="number"
+                step={1}
+                min={1}
+                name="whales.balance"
+                placeholder="Minimum balance to be considered a whale | default: 100000"
+                value={network.whales?.balance || ""}
                 onChange={handleChange}
                 className="bg-gray-800 text-white p-2 rounded-lg w-full mt-4"
             />

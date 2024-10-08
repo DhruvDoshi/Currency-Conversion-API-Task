@@ -14,6 +14,7 @@ const NetworkSchema = new mongoose.Schema({
         default: {
             cron: '0 */1 * * *', // every 1 hour.
             amount: 10, // amount of whales to track.
+            balance: 100000, // minimum balance to be considered a whale.
         }
     },
 }, {timestamps: true});
